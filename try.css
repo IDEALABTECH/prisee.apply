@@ -624,4 +624,5 @@ h4 {
 body, h1, h2, h3, p {
   margin: 0; /* Bỏ margin cho tất cả các phần tử */
   padding: 0; /* Bỏ padding cho tất cả các phần tử */
+  display: flex;
 }
