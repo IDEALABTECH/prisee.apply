@@ -16,11 +16,13 @@
 
 .logo img {
   width: 350px; /* Kích thước logo */
+  display: flex
   height: 180px;
     transition: transform 0.3s; /* Hiệu ứng khi hover */
 }
 
 .logo img:hover {
+  display: flex
   transform: scale(1.1); /* Tăng kích thước logo khi hover */
 }
 
@@ -28,6 +30,7 @@
   color: rgb(240, 248, 8); /* Màu chữ */
   font-size: 2em; /* Kích thước chữ */
   margin: 0; /* Bỏ margin */
+  display: flex;
 }
 
 /* Hiệu ứng animation cho header */
