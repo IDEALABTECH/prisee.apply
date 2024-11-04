@@ -21,7 +21,7 @@
     <div class="logo">
         <img src="logo.png" alt="Logo PRISEE">
          <img src="logotext.png" alt="Logo PRISEE">
-
+𝐏𝐑𝐈𝐒𝐄 the knowledge, 𝐒𝐄𝐄 the future
     </div>
 </header>
 <main>
@@ -30,24 +30,20 @@
 
     <!-- Search and Filter Section -->
     <section id="search-filter">
-        <input type="text" id="search" placeholder="Tìm kiếm công việc..." oninput="filterJobs()">
-        <select id="jobType" onchange="filterJobs()">
-            <option value="all">Tất cả loại công việc</option>
-            <option value="fulltime">1 nhiệm kì</option>
-            <option value="parttime">Nửa nhiệm kì</option>
-        </select>
+        <input type="text" id="search" placeholder="Tìm kiếm vị trí tuyển dụng..." oninput="filterJobs()">
         <select id="house" onchange="filterJobs()">
-            <option value="all">Tất cả các nhà</option>
-            <option value="Photon">Photon</option>
+            <option value="all">Tất cả các Khối/Ban</option>
+            <option value="Photon">PHOTON</option>
             <option value="Rise">RISE</option>
-            <option value="Idea">Idealab</option>
-            <option value="EE">Eureka</option>
+            <option value="Idea">IDEALAB</option>
+            <option value="Symposia">SYMPOSIA </option>
+            <option value="EE">EUREKA</option>
         </select>
     </section>
 
     <!-- Job List --> 
     <section id="job-list">
-        <p>Vị trí đang tuyển</p>
+        <p><center> VỊ TRÍ TUYỂN DỤNG </center></p>
         <br>
         <div id="jobs">
             <!-- Các công việc sẽ được hiển thị tại đây -->
@@ -93,21 +89,21 @@
                   <td><label for="applicantHouse">Chọn nhà:</label></td>
                   <td>
                       <select id="applicantHouse" name="Nhà" required>
-                          <option value="">Chọn nhà của bạn</option>
-                          <option value="Photon">Photon</option>
-                          <option value="Idealab">Idealab </option>
-                          <option value="Eureka">Eureka </option>
+                          <option value="">Chọn Khối/Ban của bạn:</option>
+                          <option value="Photon">PHOTON</option>
+                                                    <option value="Rise">RISE</option>
+                          <option value="Idealab">IDEALAB </option>
+                         <option value="Symposia">SYMPOSIA </option>
+
+                          <option value="Eureka">EUREKA </option>
                       </select>
                   </td>
               </tr>
               <tr>
-                <td><label for="applicantTime">Thời gian làm việc:</label></td>
+                <td><label for="applicantTime">Thời gian cam kết:</label></td>
                 <td>
-                  <select id="applicantTime" name="Time" required>
-                      <option value="">Chọn thời gian làm việc của bạn</option>
-                      <option value="full">1 nhiệm kì</option>
-                      <option value="part">6 tháng</option>
-                  </select>
+                <td><textarea  id="applicantTime" name="Time" placeholder="Nhập thời gian cam kết" required></textarea></td>
+
               </td>
             </tr>
               <tr>
@@ -152,8 +148,8 @@
           <a href="https://www.facebook.com/prisee.ptnk"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.linkedin.com/company/prisee-science-community/"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/company/prisee-science-community/"><i class="fab fa-linkedin-in"></i></a>
+          <a href=""><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <div class="link-boxes">
@@ -163,7 +159,9 @@
           <li><a href="#">RISE</a></li>
           <li><a href="https://www.facebook.com/idealab.prisee">IDEALAB</a></li>
           <li><a href="https://www.facebook.com/profile.php?id=100093565646025">SYMPOSIA</a></li>
-          <li><a href="#">EE</a></li>
+          <li><a href="#">EUREKA</a></li>
+                      <li><a href="#">HUMAN RESOURCES</a></li>
+
 
         </ul>
         <ul class="box">
