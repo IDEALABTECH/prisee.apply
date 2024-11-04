@@ -1,6 +1,6 @@
     const jobs = [
-        { title: "Web Developer", type: "fulltime", house: "Photon", description: "Xây dựng và tối ưu website" },
-        { title: "Data Scientist", type: "internship", house: "Rise", description: "Phân tích dữ liệu và mô hình hoá" },
+        { title: "Web Developer", type: "fulltime", house: "PHOTON Division of Knowledge and Practical Training", description: "Xây dựng và tối ưu website" },
+        { title: "Data Scientist", type: "internship", house: "RISE Division of Research in Science & Engineering", description: "Phân tích dữ liệu và mô hình hoá" },
         // Thêm các công việc khác
     ];
 
