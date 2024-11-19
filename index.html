@@ -18,32 +18,40 @@
 </head>
 <body>
   <header class="hi">
-    <div class="logo">
-        <img src="logo.png" alt="Logo PRISEE">
-         <img src="logotext.png" alt="Logo PRISEE">
-𝐏𝐑𝐈𝐒𝐄 the knowledge, 𝐒𝐄𝐄 the future
+    <span class="title">PRISEE</span>
+    <div class="subtitle">
+      <span>SCIENCE &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <span style="font-size: 32px; color: white;">𝐏𝐑𝐈𝐒𝐄</span> the knowledge,</span>
+      <span>COMMUNITY &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <span style="font-size: 32px; color: white;">𝐒𝐄𝐄</span> the future</span>
     </div>
+  
 </header>
 <main>
   <center>
-    
+
 
     <!-- Search and Filter Section -->
     <section id="search-filter">
-        <input type="text" id="search" placeholder="Tìm kiếm vị trí tuyển dụng..." oninput="filterJobs()">
+        <input type="text" id="search" placeholder="Tìm kiếm công việc..." oninput="filterJobs()">
+        
         <select id="house" onchange="filterJobs()">
             <option value="all">Tất cả các Khối/Ban</option>
-            <option value="Photon">PHOTON</option>
-            <option value="Rise">RISE</option>
-            <option value="Idea">IDEALAB</option>
-            <option value="Symposia">SYMPOSIA </option>
-            <option value="EE">EUREKA</option>
+            <option value="PHOTON Division">PHOTON Division</option>
+            <option value="RISE Division">RISE Division</option>
+            <option value="IDEALAB Division">IDEALAB Division</option>
+            <option value="SYMPOSIA Division">SYMPOSIA Division</option>
+            <option value="EUREKA Division">EUREKA Division</option>
+            <option value="HR">HUMAN RESOURCES</option>
+
         </select>
+        <select id="jobType" onchange="filterJobs()">
+          <option value="all">Tất cả loại công việc</option>
+      
+      </select>
     </section>
 
     <!-- Job List --> 
     <section id="job-list">
-        <p><center> VỊ TRÍ TUYỂN DỤNG </center></p>
+        <center style="font-size: 35px; font-weight:bold; color: red; letter-spacing: 3px;">VỊ TRÍ TUYỂN DỤNG </center>
         <br>
         <div id="jobs">
             <!-- Các công việc sẽ được hiển thị tại đây -->
@@ -62,7 +70,8 @@
 <div id="applyModal" class="modal">
   <div class="modal-content">
       <span class="close-btn" onclick="closeApplyModal()">&times;</span>
-      <h2>Ứng tuyển công việc</h2>
+      <center style="font-size:25px;font-weight: bold;color:darkblue; letter-spacing: 3px"> ĐƠN TUYỂN DỤNG PRISEE</center>
+      <br>
       <form id="applyForm" method="https://script.google.com/macros/s/AKfycbxF0z04NooJXhl9kjjRwSWc9COFyrU85RnBjU0_gu9Q0UjPxRluDej21rTX3rpXbdyhrA/exec">
           <table>
               <tr>
@@ -88,28 +97,33 @@
               <tr>
                   <td><label for="applicantHouse">Chọn nhà:</label></td>
                   <td>
-                      <select id="applicantHouse" name="Nhà" required>
-                          <option value="">Chọn Khối/Ban của bạn:</option>
-                          <option value="Photon">PHOTON</option>
-                                                    <option value="Rise">RISE</option>
-                          <option value="Idealab">IDEALAB </option>
-                         <option value="Symposia">SYMPOSIA </option>
-
-                          <option value="Eureka">EUREKA </option>
+                      <select id="applicantHouse" name="Khối/Ban" required>
+                          <option value="">Chọn Khối/Ban của bạn</option>
+                          <option value="Photon">PHOTON Division</option>
+                          <option value="Rise">RISE Division</option>
+                          <option value="Idea">IDEALAB Division</option>
+                          <option value="SYMPOSIA">SYMPOSIA Division</option>
+                          <option value="EE">EUREKA Division</option>
+                          <option value="HR">HUMAN RESOURCES</option>
+              
                       </select>
                   </td>
               </tr>
               <tr>
                 <td><label for="applicantTime">Thời gian cam kết:</label></td>
-                <td>
-                <td><textarea  id="applicantTime" name="Time" placeholder="Nhập thời gian cam kết" required></textarea></td>
+          
+                  <td><textarea id="applicantTime" name="Time" placeholder="Nhập thời gian cam kết" required></textarea></td>
 
-              </td>
+              
             </tr>
               <tr>
                 <td><label for="applicantCV" >Link CV (Drive)</label></td>
                 <td><textarea  id="applicantCV" name="Link CV" placeholder="Paste link google drive chứa CV tại đây" required></textarea></td>
             </tr>
+            <tr>
+              <td><label for="applicantTASK" >Link nộp TASK (nếu có)</label></td>
+              <td><textarea  id="applicantTASK" name="Link TASK" placeholder="Paste link nộp theo TASK đối với điều kiện từng Khối/Ban tại đây" required></textarea></td>
+          </tr>
               <tr>
                   <td><label for="applicantMessage" >Tâm tư của bạn:</label></td>
                   <td><textarea id="applicantMessage" name="Tâm tư" placeholder="Chia sẻ thêm về bản thân bạn..." required></textarea></td>
@@ -123,8 +137,9 @@
                   </select>
               </td> 
             </tr>
-             
           </table>
+          <br>
+
           <button type="submit" class="btn btn-primary btn-block">
             Submit
           </button>
@@ -142,7 +157,7 @@
       <div class="top">
         <div class="logo-details">
           <i class="fab fa-slack"></i>
-          <span class="logo_name">PRISEE</span>
+      <span style="color: white; font-weight: bold;">PRI</span><span style="color: #FFD700; font-weight: bold;">SEE</span> <span> </span><span style="color: #FFD700; font-weight: bold;">SCIENCE </span> <span>  </span>    <span style="color: white; font-weight: bold;">COMM</span><span style="color: #FFD700; font-weight: bold;">UNITY</span>
         </div>
         <div class="media-icons">
           <a href="https://www.facebook.com/prisee.ptnk"><i class="fab fa-facebook-f"></i></a>
@@ -155,28 +170,18 @@
       <div class="link-boxes">
         <ul class="box">
           <li class="link_name">Divisions</li>
-          <li><a href="https://www.facebook.com/prisee.photon">PHOTON</a></li>
-          <li><a href="#">RISE</a></li>
-          <li><a href="https://www.facebook.com/idealab.prisee">IDEALAB</a></li>
-          <li><a href="https://www.facebook.com/profile.php?id=100093565646025">SYMPOSIA</a></li>
-          <li><a href="#">EUREKA</a></li>
-                      <li><a href="#">HUMAN RESOURCES</a></li>
+          <li><a href="https://www.facebook.com/prisee.photon">PHOTON Division</a></li>
+          <li><a href="#">RISE Division</a></li>
+          <li><a href="https://www.facebook.com/idealab.prisee">IDEALAB Division</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=100093565646025">SYMPOSIA Division</a></li>
+          <li><a href="#">EUREKA Division</a></li>
+          <li><a href="#">HUMAN RESOURCES</a></li>
 
 
-        </ul>
-        <ul class="box">
-          <li class="link_name">Partners</li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
         </ul>
         <ul class="box">
           <li class="link_name">Achievements</li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
-          <li><a href="#"></a></li>
+          <li><a href="https://sites.google.com/ptnk.edu.vn/sciencecommunity/inspire-fair?authuser=0">Science & Community -  INSPIRE Fair          </a></li>
         </ul>
   
         <ul class="box input-box">
@@ -198,18 +203,23 @@
   </footer>
     <script src="try.js"></script>
     <script>
-      const scriptURL =                       
-      "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
       const form = document.forms["applyForm"];
+    
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         var formData = new FormData(form);
+    
         fetch(scriptURL, { method: "POST", body: formData })
           .then((response) => {
             swal("Done", "Submitted Successfully.", "success");
+            // Tự động reset form sau 1 giây
+            setTimeout(() => {
+              form.reset();
+            }, 1000); // 1000ms = 1s
           })
           .catch((error) => {
-            swal("Error", "Something went wrong. please try again!", "error");
+            swal("Error", "Something went wrong. Please try again!", "error");
           });
       });
     </script>
