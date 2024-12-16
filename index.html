@@ -58,13 +58,18 @@
         </div>
     </section>
 
-    <!-- Job Description Modal -->
-    <div id="jobModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeJobModal()">&times;</span>
-            <img id="jobImage" src="" alt="Mô tả công việc">
+<div id="jobModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeJobModal()">&times;</span>
+        <img id="jobImage" src="" alt="Mô tả công việc">
+        <div class="modal-buttons">
+            <button id="zoomInBtn" onclick="zoomIn()">Zoom In</button>
+            <button id="zoomOutBtn" onclick="zoomOut()">Zoom Out</button>
+            <button id="openInNewTabBtn" onclick="openInNewTab()">Open in New Tab</button>
         </div>
     </div>
+</div>
+
 
     <!-- Application Form Modal -->
 <div id="applyModal" class="modal">
