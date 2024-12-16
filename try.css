@@ -1,3 +1,4 @@
+
 .hi {
   display: flex;
   background: linear-gradient(90deg, #4B0082,#00008B, #070793 );
@@ -422,6 +423,49 @@ h4 {
   background-color: rgba(0, 0, 0, 0.6);
   transition: opacity 0.4s ease-in-out;
 }
+/* Modal Buttons Style */
+.modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    background-color: #4a90e2;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.modal-buttons button:hover {
+    background-color: #357ab7;
+    transform: scale(1.1);
+}
+
+/* Zoom Animations */
+@keyframes zoomInAnimation {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes zoomOutAnimation {
+    from {
+        transform: scale(1.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
 /* Modal Content */
 .modal-content {
   position: relative;
@@ -456,7 +500,7 @@ h4 {
 }
 /* Form Table */
 #applyForm table {
-  width: 100%;
+  width: 450px;
   border-collapse: collapse;
 }
 #applyForm td {
@@ -479,7 +523,7 @@ h4 {
 #applyForm input[type="url"],
 #applyForm select,
 #applyForm textarea {
-  width: 100%;
+  width: 300px;
   padding: 0.5rem;
   margin-top: 0.2rem;
   border: 3px solid #0a5e9ed6;
@@ -558,4 +602,3 @@ body, h1, h2, h3, p {
 .subtitle span {
   text-align: left;
 }
-
