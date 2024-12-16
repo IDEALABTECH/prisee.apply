@@ -6,8 +6,20 @@ const jobs = [
     { title: "Member of ItechINSPIRE", house: "IDEALAB Division" },
     { title: "Member of Program Team", house: "IDEALAB Division" },
 
-    { title: "Member of Photo", house: "SYMPOSIA Division" },
-    { title: "Member of Content", house: "SYMPOSIA Division" },
+    { title: "Member of Photo Team", house: "SYMPOSIA Division" },
+    { title: "Member of Content Team", house: "SYMPOSIA Division" },
+        { title: "Member of Design Team", house: "SYMPOSIA Division" },
+
+
+            { title: "Leader of ER Team", house: "PHOTON Division" },
+      { title: "Member of Content and Learning Materials Team", house: "PHOTON Division" },
+      { title: "Member of ER Team", house: "PHOTON Division" },
+      { title: "Vice chief", house: "PHOTON Division" },
+    
+      { title: "Member", house: "EUREKA Division" },
+
+    
+
 
     { title: "Member of HR Team", house: "HR" },
 
