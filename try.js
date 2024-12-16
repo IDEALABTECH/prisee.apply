@@ -1,4 +1,4 @@
-const jobs = [
+ const jobs = [
     { title: "Member of Design Team", house: "IDEALAB Divsion"},
     { title: "Member of ItechCode", house: "IDEALAB Division" },
     { title: "Member of ItechW&M", house: "IDEALAB Division" },
@@ -65,4 +65,26 @@ document.getElementById("applyModal").style.display = "flex";
 function closeApplyModal() {
 document.getElementById("applyModal").style.display = "none";
 }
-window.onload = () => displayJobs(jobs);
+window.onload = () => displayJobs(jobs);let zoomLevel = 1; // Keeps track of the current zoom level
+
+// Zoom In functionality
+function zoomIn() {
+    const modalContent = document.querySelector('#jobModal .modal-content');
+    zoomLevel += 0.5; // Increment zoom level
+    modalContent.style.transform = `scale(${zoomLevel})`;
+    modalContent.style.transition = 'transform 0.3s ease';
+}
+
+// Zoom Out functionality
+function zoomOut() {
+    const modalContent = document.querySelector('#jobModal .modal-content');
+    zoomLevel = Math.max(1, zoomLevel - 0.5); // Decrement zoom level, minimum 1
+    modalContent.style.transform = `scale(${zoomLevel})`;
+    modalContent.style.transition = 'transform 0.3s ease';
+}
+
+// Open in New Tab functionality
+function openInNewTab() {
+    const jobImage = document.getElementById('jobImage').src;
+    window.open(jobImage, '_blank');
+}
