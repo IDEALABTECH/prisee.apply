@@ -1,10 +1,10 @@
  const jobs = [
     { title: "Member of Academic Team for ITECHCODE", house: "IDEALAB Divsion"},
     { title: "Member of Design Team for IDEALAB", house: "IDEALAB Division" },
+   { title: "Member of W&M Team", house: "IDEALAB Division" },
     { title: "Member of Finance-ER Team", house: "IDEALAB Division" },
     { title: "Member of Program Team for IDEALAB", house: "IDEALAB Division" },
     { title: "Member of Website Developer", house: "IDEALAB Division" },
-
     { title: "Member of Photo Team", house: "SYMPOSIA Division" },
     { title: "Member of Content Team", house: "SYMPOSIA Division" },
         { title: "Member of Design Team", house: "SYMPOSIA Division" },
