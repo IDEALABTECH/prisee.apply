@@ -238,29 +238,28 @@
     <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
   const form = document.forms["applyForm"];
-  let attempts = 0; // Biến đếm số lần thử
-  const maxAttempts = 2; // Số lần thử tối đa
-  let lockoutTime = 60 * 1000; // Thời gian chờ sau khi sai 2 lần (1 phút)
-  let captchaAnswer = ""; // Đáp án của CAPTCHA hiện tại
+  let attempts = 0; 
+  const maxAttempts = 2; 
+  let lockoutTime = 60 * 1000; 
+  let captchaAnswer = ""; 
 
-  // Tạo CAPTCHA ngẫu nhiên
   function generateCaptcha() {
     const captchaContainer = document.getElementById("captchaContainer");
-    const captchaType = Math.floor(Math.random() * 3); // Random từ 0 đến 2
-    captchaContainer.innerHTML = ""; // Xóa CAPTCHA cũ
+    const captchaType = Math.floor(Math.random() * 3); 
+    captchaContainer.innerHTML = ""; 
 
     switch (captchaType) {
-      case 0: // CAPTCHA dạng câu hỏi toán học
+      case 0: 
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         captchaAnswer = num1 + num2;
         captchaContainer.innerHTML = `<p>Solve: ${num1} + ${num2} = ?</p><input type="text" id="captchaInput" required>`;
         break;
-      case 1: // CAPTCHA dạng chuỗi ngẫu nhiên
-        captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase(); // Chuỗi 6 ký tự
+      case 1: 
+        captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase(); 
         captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
         break;
-      case 2: // CAPTCHA dạng chọn đáp án
+      case 2: 
         const options = ["Cat", "Dog", "Bird", "Fish"];
         captchaAnswer = options[Math.floor(Math.random() * options.length)];
         captchaContainer.innerHTML = `<p>Select: Which one is an animal?</p><select id="captchaInput" required>
@@ -271,20 +270,18 @@
     }
   }
 
-  // Khóa form nếu sai quá số lần
   function lockForm() {
     const submitButton = document.querySelector("button[type='submit']");
-    submitButton.disabled = true; // Vô hiệu hóa nút submit
+    submitButton.disabled = true;
     setTimeout(() => {
-      attempts = 0; // Reset số lần thử sau 1 phút
-      generateCaptcha(); // Tạo CAPTCHA mới
-      submitButton.disabled = false; // Kích hoạt lại nút submit
+      attempts = 0; 
+      generateCaptcha(); 
+      submitButton.disabled = false;
     }, lockoutTime);
   }
 
-  // Xử lý sự kiện submit form
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Ngăn chặn hành vi mặc định
+    e.preventDefault(); 
     const userCaptcha = document.getElementById("captchaInput").value.trim();
 
     if (userCaptcha !== captchaAnswer.toString()) {
@@ -299,16 +296,15 @@
       return;
     }
 
-    // CAPTCHA đúng, gửi dữ liệu
     var formData = new FormData(form);
 
     fetch(scriptURL, { method: "POST", body: formData })
       .then((response) => {
         swal("Done", "Submitted Successfully.", "success");
-        // Tự động reset form sau 1 giây
+
         setTimeout(() => {
           form.reset();
-          generateCaptcha(); // Tạo CAPTCHA mới sau khi gửi thành công
+          generateCaptcha(); 
         }, 1000); // 1000ms = 1s
       })
       .catch((error) => {
@@ -316,7 +312,6 @@
       });
   });
 
-  // Tạo CAPTCHA đầu tiên khi tải trang
   window.onload = generateCaptcha;
 </script>
 
