@@ -1,5 +1,5 @@
 
- const jobs = [
+const jobs = [
     { title: "Member of Academic Team for ITECHCODE", house: "IDEALAB Divsion"},
      { title: "Member of W&M Project", house: "IDEALAB Division" },
 
@@ -38,7 +38,7 @@ function displayJobs(jobList) {
             <p style="font-size:25px;color: darkblue; font-weight: bold; letter-spacing: 2px">Khối/Ban: ${job.house}</p>
             <br/>
             <button onclick="openJobModal('${job.title}')">Xem Mô Tả</button>
-            <button onclick="openApplyModal()">Ứng tuyển</button>
+<button onclick="window.location.href='https://forms.gle/5PppLAqX4P434aKVA';">Ứng tuyển</button>
         `;
         jobsContainer.appendChild(jobElement);
     });
