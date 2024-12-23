@@ -236,133 +236,146 @@
           });
       });
     </script> -->
-   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
-    const form = document.getElementById("applyForm");
-    const submitButton = document.getElementById("submitButton");
+  <script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyma3XO3H8JtbSIAsPpwYYT3x0-jKEwwy5f9PsIX7-UYZf0uwwPrB34Qs8NgPJBQxzK/exec";
+const form = document.forms["applyForm"];
+  const submitButton = document.getElementById("submitButton");
 
-    let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
-    const maxAttempts = 2;
-    let lockoutTime = parseInt(localStorage.getItem("lockoutTime")) || 0;
-    let captchaAnswer = ""; 
+  let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
+  const maxAttempts = 2;
+  let lockoutTime = parseInt(localStorage.getItem("lockoutTime")) || 0;
+  let captchaAnswer = "";
 
-    function generateCaptcha() {
-      const captchaContainer = document.getElementById("captchaContainer");
-      const captchaType = Math.floor(Math.random() * 5);
-      captchaContainer.innerHTML = ""; // Reset CAPTCHA
-      switch (captchaType) {
-        case 0: 
-          const num1 = Math.floor(Math.random() * 10) + 1;
-          const num2 = Math.floor(Math.random() * 10) + 1;
-          captchaAnswer = num1 + num2;
-          captchaContainer.innerHTML = `<p>Solve: ${num1} + ${num2} = ?</p><input type="text" id="captchaInput" required>`;
-          break;
-        case 1: 
-          captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase();
-          captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
-          break;
-        case 2: 
-          const options = ["Cat", "Dog", "Fish", "Bird"];
-          captchaAnswer = "Fish"; //
-          captchaContainer.innerHTML = `<p>Select: Con nào không chân?</p><select id="captchaInput" required>
-            <option value="">--Select--</option>
-            ${options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-          </select>`;
-          break;
-        case 3: 
-          captchaAnswer = "car";
-          captchaContainer.innerHTML = `<p>Select the car:</p>
-            <div>
-              <img src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&height=900&width=1600&fit=bounds" data-answer="car">
-              <img src="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg" data-answer="dog">
-              <img src="https://i.natgeofe.com/n/4cebbf38-5df4-4ed0-864a-4ebeb64d33a4/NationalGeographic_1468962_3x4.jpg" data-answer="cat">
-            </div>
-            <input type="hidden" id="captchaInput">
-          `;
-          document.querySelectorAll("img").forEach(img => {
-            img.addEventListener("click", () => {
-              document.getElementById("captchaInput").value = img.dataset.answer;
-            });
+  function generateCaptcha() {
+    const captchaContainer = document.getElementById("captchaContainer");
+    const captchaType = Math.floor(Math.random() * 5);
+    captchaContainer.innerHTML = "";
+    switch (captchaType) {
+      case 0:
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        captchaAnswer = num1 + num2;
+        captchaContainer.innerHTML = `<p>Solve: ${num1} + ${num2} = ?</p><input type="text" id="captchaInput" required>`;
+        break;
+      case 1:
+        captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase();
+        captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
+        break;
+      case 2:
+        const options = ["Cat", "Dog", "Fish", "Bird"];
+        captchaAnswer = "Fish";
+        captchaContainer.innerHTML = `<p>Select: Con nào không chân?</p><select id="captchaInput" required>
+          <option value="">--Select--</option>
+          ${options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
+        </select>`;
+        break;
+      case 3:
+        captchaAnswer = "car";
+        captchaContainer.innerHTML = `<p>Select the car:</p>
+          <div>
+            <img src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&height=900&width=1600&fit=bounds" data-answer="car">
+            <img src="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg" data-answer="dog">
+            <img src="https://i.natgeofe.com/n/4cebbf38-5df4-4ed0-864a-4ebeb64d33a4/NationalGeographic_1468962_3x4.jpg" data-answer="cat">
+          </div>
+          <input type="hidden" id="captchaInput">
+        `;
+        document.querySelectorAll("img").forEach(img => {
+          img.addEventListener("click", () => {
+            document.getElementById("captchaInput").value = img.dataset.answer;
           });
-          break;
-        case 4: 
-          const randomString = Math.random().toString(36).substring(2, 12);
-          captchaAnswer = randomString.length;
-          captchaContainer.innerHTML = `<p>Count the characters: <b>${randomString}</b></p><input type="text" id="captchaInput" required>`;
-          break;
-      }
+        });
+        break;
+      case 4:
+        const randomString = Math.random().toString(36).substring(2, 12);
+        captchaAnswer = randomString.length;
+        captchaContainer.innerHTML = `<p>Count the characters: <b>${randomString}</b></p><input type="text" id="captchaInput" required>`;
+        break;
     }
+  }
 
-    function lockForm() {
-      const randomWaitTime = Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Random từ 10 đến 50 giây
-      const lockoutUntil = Date.now() + randomWaitTime * 1000;
-      localStorage.setItem("lockoutTime", lockoutUntil);
-      attempts = 0; 
-      localStorage.setItem("captchaAttempts", attempts);
+  function lockForm() {
+    const randomWaitTime = Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Random từ 10 đến 50 giây
+    const lockoutUntil = Date.now() + randomWaitTime * 1000;
+    localStorage.setItem("lockoutTime", lockoutUntil);
+    attempts = 0;
+    localStorage.setItem("captchaAttempts", attempts);
 
-      submitButton.disabled = true;
-      const interval = setInterval(() => {
-        const now = Date.now();
-        if (now >= lockoutUntil) {
-          clearInterval(interval);
-          submitButton.disabled = false; 
-          localStorage.removeItem("lockoutTime"); 
-          generateCaptcha(); 
-        }
-      }, 1000);
-    }
+    submitButton.disabled = true;
 
-    function checkLockout() {
-      const lockoutUntil = parseInt(localStorage.getItem("lockoutTime")) || 0;
+    const interval = setInterval(() => {
       const now = Date.now();
-      if (now < lockoutUntil) {
-        submitButton.disabled = true;
-        const interval = setInterval(() => {
-          if (Date.now() >= lockoutUntil) {
-            clearInterval(interval);
-            submitButton.disabled = false;
-            localStorage.removeItem("lockoutTime");
-            generateCaptcha();
-          }
-        }, 1000);
-      } else {
+      const remainingTime = Math.max(0, Math.ceil((lockoutUntil - now) / 1000));
+      submitButton.textContent = `Wait ${remainingTime}s`;
+
+      if (now >= lockoutUntil) {
+        clearInterval(interval);
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit";
+        localStorage.removeItem("lockoutTime");
         generateCaptcha();
       }
-    }
+    }, 1000);
+  }
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const userCaptcha = document.getElementById("captchaInput").value.trim();
+  function checkLockout() {
+    const lockoutUntil = parseInt(localStorage.getItem("lockoutTime")) || 0;
+    const now = Date.now();
 
-      if (userCaptcha !== captchaAnswer.toString()) {
-        attempts++;
-        localStorage.setItem("captchaAttempts", attempts);
-        if (attempts >= maxAttempts) {
-          alert(`You have exceeded ${maxAttempts} attempts. Please wait before trying again.`);
-          lockForm();
-        } else {
-          alert("Incorrect CAPTCHA. Please try again.");
+    if (now < lockoutUntil) {
+      submitButton.disabled = true;
+
+      const interval = setInterval(() => {
+        const remainingTime = Math.max(0, Math.ceil((lockoutUntil - now) / 1000));
+        submitButton.textContent = `Wait ${remainingTime}s`;
+
+        if (Date.now() >= lockoutUntil) {
+          clearInterval(interval);
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit";
+          localStorage.removeItem("lockoutTime");
           generateCaptcha();
         }
-        return;
+      }, 1000);
+    } else {
+      generateCaptcha();
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userCaptcha = document.getElementById("captchaInput").value.trim();
+
+    if (userCaptcha !== captchaAnswer.toString()) {
+      attempts++;
+      localStorage.setItem("captchaAttempts", attempts);
+
+      if (attempts >= maxAttempts) {
+        alert(`You have exceeded ${maxAttempts} attempts. Please wait before trying again.`);
+        lockForm();
+      } else {
+        alert("Incorrect CAPTCHA. Please try again.");
+        generateCaptcha();
       }
+      return;
+    }
 
-      var formData = new FormData(form);
-      fetch(scriptURL, { method: "POST", body: formData })
-        .then(response => {
-          swal("Done", "Submitted Successfully.", "success");
-          setTimeout(() => {
-            form.reset();
-            generateCaptcha();
-          }, 1000);
-        })
-        .catch(error => {
-          swal("Error", "Something went wrong. Please try again!", "error");
-        });
-    });
+    var formData = new FormData(form);
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then((response) => {
+        swal("Done", "Submitted Successfully.", "success");
+        setTimeout(() => {
+          form.reset();
+          generateCaptcha();
+        }, 1000);
+      })
+      .catch(error => {
+        swal("Error", "Something went wrong. Please try again!", "error");
+      });
+  });
+ 
+  window.onload = checkLockout;
+</script>
 
-    window.onload = checkLockout;
-  </script>
 
 </body>
 </html>
