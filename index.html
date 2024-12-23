@@ -236,9 +236,9 @@
           });
       });
     </script> -->
- <script>
-     const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
-      const form = document.forms["applyForm"];
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzOshKFgBia6epgQTp1t7ZAgF7Pd_ceuVGMVpGmo2yYVJ9Ff3-ogNy7KdJC4GO-trdF7A/exec";
+  const form = document.forms["applyForm"];
   const submitButton = document.getElementById("submitButton");
 
   let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
@@ -249,7 +249,7 @@
   // Tạo CAPTCHA
   function generateCaptcha() {
     const captchaContainer = document.getElementById("captchaContainer");
-    const captchaType = Math.floor(Math.random() * 5); // Random từ 0 đến 4
+    const captchaType = Math.floor(Math.random() * 2); // Random từ 0 đến 1
     captchaContainer.innerHTML = ""; // Reset CAPTCHA
 
     switch (captchaType) {
@@ -262,26 +262,6 @@
       case 1: // Chuỗi ký tự ngẫu nhiên
         captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase();
         captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
-        break;
-      case 2: // Chọn đáp án đúng
-        const options = ["Cat", "Dog", "Fish", "Bird"];
-        captchaAnswer = "Fish";
-        captchaContainer.innerHTML = `<p>Select: Con nào không chân?</p><select id="captchaInput" required>
-          <option value="">--Select--</option>
-          ${options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-        </select>`;
-        break;
-      case 3: // Câu hỏi logic
-        captchaAnswer = "7";
-        captchaContainer.innerHTML = `
-          <p>How many colors are there in a rainbow</p>
-          <input type="text" id="captchaInput" required>
-        `;
-        break;
-      case 4: // Đếm ký tự trong chuỗi
-        const randomString = Math.random().toString(36).substring(2, 12);
-        captchaAnswer = randomString.length;
-        captchaContainer.innerHTML = `<p>Count the characters: <b>${randomString}</b></p><input type="text" id="captchaInput" required>`;
         break;
     }
   }
@@ -362,6 +342,7 @@
         swal("Done", "Submitted Successfully.", "success");
         setTimeout(() => {
           form.reset();
+          generateCaptcha();
         }, 1000);
       })
       .catch(error => {
@@ -372,6 +353,7 @@
   // Khởi tạo CAPTCHA khi tải trang
   window.onload = checkLockout;
 </script>
+
 
 
 
