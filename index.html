@@ -237,7 +237,7 @@
       });
     </script> -->
   <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyma3XO3H8JtbSIAsPpwYYT3x0-jKEwwy5f9PsIX7-UYZf0uwwPrB34Qs8NgPJBQxzK/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
 const form = document.forms["applyForm"];
   const submitButton = document.getElementById("submitButton");
 
@@ -270,20 +270,11 @@ const form = document.forms["applyForm"];
         </select>`;
         break;
       case 3:
-        captchaAnswer = "car";
-        captchaContainer.innerHTML = `<p>Select the car:</p>
-          <div>
-            <img src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&height=900&width=1600&fit=bounds" data-answer="car">
-            <img src="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg" data-answer="dog">
-            <img src="https://i.natgeofe.com/n/4cebbf38-5df4-4ed0-864a-4ebeb64d33a4/NationalGeographic_1468962_3x4.jpg" data-answer="cat">
-          </div>
-          <input type="hidden" id="captchaInput">
-        `;
-        document.querySelectorAll("img").forEach(img => {
-          img.addEventListener("click", () => {
-            document.getElementById("captchaInput").value = img.dataset.answer;
-          });
-        });
+       captchaAnswer = "3"; // Đáp án đúng
+  captchaContainer.innerHTML = `
+    <p>If you have 3 apples and you take away 2, how many do you have?</p>
+    <input type="text" id="captchaInput" required>
+  `;
         break;
       case 4:
         const randomString = Math.random().toString(36).substring(2, 12);
