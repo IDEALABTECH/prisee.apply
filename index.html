@@ -236,9 +236,9 @@
           });
       });
     </script> -->
-  <script>
+ <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
-const form = document.forms["applyForm"];
+  const form = document.forms["applyForm"];
   const submitButton = document.getElementById("submitButton");
 
   let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
@@ -246,22 +246,24 @@ const form = document.forms["applyForm"];
   let lockoutTime = parseInt(localStorage.getItem("lockoutTime")) || 0;
   let captchaAnswer = "";
 
+  // Tạo CAPTCHA
   function generateCaptcha() {
     const captchaContainer = document.getElementById("captchaContainer");
-    const captchaType = Math.floor(Math.random() * 5);
-    captchaContainer.innerHTML = "";
+    const captchaType = Math.floor(Math.random() * 5); // Random từ 0 đến 4
+    captchaContainer.innerHTML = ""; // Reset CAPTCHA
+
     switch (captchaType) {
-      case 0:
+      case 0: // Toán học cơ bản
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         captchaAnswer = num1 + num2;
         captchaContainer.innerHTML = `<p>Solve: ${num1} + ${num2} = ?</p><input type="text" id="captchaInput" required>`;
         break;
-      case 1:
+      case 1: // Chuỗi ký tự ngẫu nhiên
         captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase();
         captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
         break;
-      case 2:
+      case 2: // Chọn đáp án đúng
         const options = ["Cat", "Dog", "Fish", "Bird"];
         captchaAnswer = "Fish";
         captchaContainer.innerHTML = `<p>Select: Con nào không chân?</p><select id="captchaInput" required>
@@ -269,14 +271,14 @@ const form = document.forms["applyForm"];
           ${options.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
         </select>`;
         break;
-      case 3:
-       captchaAnswer = "3"; // Đáp án đúng
-  captchaContainer.innerHTML = `
-    <p>If you have 3 apples and you take away 2, how many do you have?</p>
-    <input type="text" id="captchaInput" required>
-  `;
+      case 3: // Câu hỏi logic
+        captchaAnswer = "7";
+        captchaContainer.innerHTML = `
+          <p>How many colors are there in a rainbow</p>
+          <input type="text" id="captchaInput" required>
+        `;
         break;
-      case 4:
+      case 4: // Đếm ký tự trong chuỗi
         const randomString = Math.random().toString(36).substring(2, 12);
         captchaAnswer = randomString.length;
         captchaContainer.innerHTML = `<p>Count the characters: <b>${randomString}</b></p><input type="text" id="captchaInput" required>`;
@@ -284,6 +286,7 @@ const form = document.forms["applyForm"];
     }
   }
 
+  // Khóa form
   function lockForm() {
     const randomWaitTime = Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Random từ 10 đến 50 giây
     const lockoutUntil = Date.now() + randomWaitTime * 1000;
@@ -308,6 +311,7 @@ const form = document.forms["applyForm"];
     }, 1000);
   }
 
+  // Kiểm tra trạng thái khóa
   function checkLockout() {
     const lockoutUntil = parseInt(localStorage.getItem("lockoutTime")) || 0;
     const now = Date.now();
@@ -332,10 +336,11 @@ const form = document.forms["applyForm"];
     }
   }
 
+  // Sự kiện submit form
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const userCaptcha = document.getElementById("captchaInput").value.trim();
 
+    const userCaptcha = document.getElementById("captchaInput").value.trim();
     if (userCaptcha !== captchaAnswer.toString()) {
       attempts++;
       localStorage.setItem("captchaAttempts", attempts);
@@ -351,6 +356,7 @@ const form = document.forms["applyForm"];
     }
 
     var formData = new FormData(form);
+
     fetch(scriptURL, { method: "POST", body: formData })
       .then((response) => {
         swal("Done", "Submitted Successfully.", "success");
@@ -363,9 +369,11 @@ const form = document.forms["applyForm"];
         swal("Error", "Something went wrong. Please try again!", "error");
       });
   });
- 
+
+  // Khởi tạo CAPTCHA khi tải trang
   window.onload = checkLockout;
 </script>
+
 
 
 </body>
