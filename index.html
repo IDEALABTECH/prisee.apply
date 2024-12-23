@@ -237,8 +237,8 @@
       });
     </script> -->
  <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
-  const form = document.forms["applyForm"];
+     const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
+      const form = document.forms["applyForm"];
   const submitButton = document.getElementById("submitButton");
 
   let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
@@ -362,7 +362,6 @@
         swal("Done", "Submitted Successfully.", "success");
         setTimeout(() => {
           form.reset();
-          generateCaptcha();
         }, 1000);
       })
       .catch(error => {
