@@ -215,7 +215,7 @@
     </div>
   </footer>
     <script src="try.js"></script>
-<!--     <script>
+    <script>
       const scriptURL = "https://script.google.com/macros/s/AKfycbwH-_KMYM3Bg0Kl37LEkICNRMCzLnux9HYSW4oLXx5wLzhYU9opPFV9cn5CNxlWxMsm4A/exec";
       const form = document.forms["applyForm"];
     
@@ -235,125 +235,7 @@
             swal("Error", "Something went wrong. Please try again!", "error");
           });
       });
-    </script> -->
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzOshKFgBia6epgQTp1t7ZAgF7Pd_ceuVGMVpGmo2yYVJ9Ff3-ogNy7KdJC4GO-trdF7A/exec";
-  const form = document.forms["applyForm"];
-  const submitButton = document.getElementById("submitButton");
-
-  let attempts = parseInt(localStorage.getItem("captchaAttempts")) || 0;
-  const maxAttempts = 2;
-  let lockoutTime = parseInt(localStorage.getItem("lockoutTime")) || 0;
-  let captchaAnswer = "";
-
-  // Tạo CAPTCHA
-  function generateCaptcha() {
-    const captchaContainer = document.getElementById("captchaContainer");
-    const captchaType = Math.floor(Math.random() * 2); // Random từ 0 đến 1
-    captchaContainer.innerHTML = ""; // Reset CAPTCHA
-
-    switch (captchaType) {
-      case 0: // Toán học cơ bản
-        const num1 = Math.floor(Math.random() * 10) + 1;
-        const num2 = Math.floor(Math.random() * 10) + 1;
-        captchaAnswer = num1 + num2;
-        captchaContainer.innerHTML = `<p>Solve: ${num1} + ${num2} = ?</p><input type="text" id="captchaInput" required>`;
-        break;
-      case 1: // Chuỗi ký tự ngẫu nhiên
-        captchaAnswer = Math.random().toString(36).substring(2, 8).toUpperCase();
-        captchaContainer.innerHTML = `<p>Enter the text: <b>${captchaAnswer}</b></p><input type="text" id="captchaInput" required>`;
-        break;
-    }
-  }
-
-  // Khóa form
-  function lockForm() {
-    const randomWaitTime = Math.floor(Math.random() * (50 - 10 + 1)) + 10; // Random từ 10 đến 50 giây
-    const lockoutUntil = Date.now() + randomWaitTime * 1000;
-    localStorage.setItem("lockoutTime", lockoutUntil);
-    attempts = 0;
-    localStorage.setItem("captchaAttempts", attempts);
-
-    submitButton.disabled = true;
-
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const remainingTime = Math.max(0, Math.ceil((lockoutUntil - now) / 1000));
-      submitButton.textContent = `Wait ${remainingTime}s`;
-
-      if (now >= lockoutUntil) {
-        clearInterval(interval);
-        submitButton.disabled = false;
-        submitButton.textContent = "Submit";
-        localStorage.removeItem("lockoutTime");
-        generateCaptcha();
-      }
-    }, 1000);
-  }
-
-  // Kiểm tra trạng thái khóa
-  function checkLockout() {
-    const lockoutUntil = parseInt(localStorage.getItem("lockoutTime")) || 0;
-    const now = Date.now();
-
-    if (now < lockoutUntil) {
-      submitButton.disabled = true;
-
-      const interval = setInterval(() => {
-        const remainingTime = Math.max(0, Math.ceil((lockoutUntil - now) / 1000));
-        submitButton.textContent = `Wait ${remainingTime}s`;
-
-        if (Date.now() >= lockoutUntil) {
-          clearInterval(interval);
-          submitButton.disabled = false;
-          submitButton.textContent = "Submit";
-          localStorage.removeItem("lockoutTime");
-          generateCaptcha();
-        }
-      }, 1000);
-    } else {
-      generateCaptcha();
-    }
-  }
-
-  // Sự kiện submit form
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const userCaptcha = document.getElementById("captchaInput").value.trim();
-    if (userCaptcha !== captchaAnswer.toString()) {
-      attempts++;
-      localStorage.setItem("captchaAttempts", attempts);
-
-      if (attempts >= maxAttempts) {
-        alert(`You have exceeded ${maxAttempts} attempts. Please wait before trying again.`);
-        lockForm();
-      } else {
-        alert("Incorrect CAPTCHA. Please try again.");
-        generateCaptcha();
-      }
-      return;
-    }
-
-    var formData = new FormData(form);
-
-    fetch(scriptURL, { method: "POST", body: formData })
-      .then((response) => {
-        swal("Done", "Submitted Successfully.", "success");
-        setTimeout(() => {
-          form.reset();
-          generateCaptcha();
-        }, 1000);
-      })
-      .catch(error => {
-        swal("Error", "Something went wrong. Please try again!", "error");
-      });
-  });
-
-  // Khởi tạo CAPTCHA khi tải trang
-  window.onload = checkLockout;
-</script>
-
+    </script>
 
 
 
