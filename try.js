@@ -7,20 +7,12 @@ const jobs = [
     { title: "Member of Finance-ER Team", house: "IDEALAB Division" },
     { title: "Member of Program Team for IDEALAB", house: "IDEALAB Division" },
     { title: "Member of Website Developer", house: "IDEALAB Division" },
+        { title: "Member of Program Team RISE", house: "RISE Division" },
+        { title: "Member of ER Team RISE", house: "RISE Division" },
+
     { title: "Member of Photo Team", house: "SYMPOSIA Division" },
     { title: "Member of Content Team", house: "SYMPOSIA Division" },
         { title: "Member of Design Team", house: "SYMPOSIA Division" },
-
-
-            { title: "Leader of ER Team", house: "PHOTON Division" },
-      { title: "Member of Content and Learning Materials Team", house: "PHOTON Division" },
-      { title: "Member of ER Team", house: "PHOTON Division" },
-      { title: "Vice chief", house: "PHOTON Division" },
-    
-      { title: "Member", house: "EUREKA Division" },
-
-    
-
 
     { title: "Member of HR Team", house: "HR" },
 
